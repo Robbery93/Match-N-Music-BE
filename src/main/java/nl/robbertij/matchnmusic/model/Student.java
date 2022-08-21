@@ -11,28 +11,24 @@ public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
     private String email;
     private String age;
-
     @Column(name = "phone_number")
     private String phoneNumber;
-
     private String residence;
+    private String photo;
     private String instrument;
-
     @Column(length = 4000)
     private String request;
-
     @Column(name = "preference_for_lesson_type")
     private String preferenceForLessonType;
-
     @OneToMany(mappedBy = "student", fetch = FetchType.LAZY)
     private List<Lesson> lesson;
-
     @OneToMany(mappedBy = "student", fetch = FetchType.LAZY)
     private List<Lesson> applications;
+
+
 
     public Student() {};
 
@@ -41,6 +37,7 @@ public class Student {
                    String email,
                    String age,
                    String phoneNumber,
+                   String photo,
                    String residence,
                    String instrument,
                    String request,
@@ -53,6 +50,7 @@ public class Student {
         this.email = email;
         this.age = age;
         this.phoneNumber = phoneNumber;
+        this.photo = photo;
         this.residence = residence;
         this.instrument = instrument;
         this.request = request;
@@ -105,6 +103,14 @@ public class Student {
 
     public void setResidence(String residence) {
         this.residence = residence;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 
     public String getInstrument() {
@@ -168,11 +174,12 @@ public class Student {
                 ", age='" + age + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", residence='" + residence + '\'' +
+                ", photo='" + photo + '\'' +
                 ", instrument='" + instrument + '\'' +
                 ", request='" + request + '\'' +
                 ", preferenceForLessonType='" + preferenceForLessonType + '\'' +
-                ", lessons=" + lesson +
-                ", applications=" + applications +
+                ", lessons='" + lesson + '\'' +
+                ", applications='" + applications + '\'' +
                 '}';
     }
 }

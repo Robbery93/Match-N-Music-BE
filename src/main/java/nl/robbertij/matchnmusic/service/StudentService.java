@@ -11,28 +11,30 @@ import nl.robbertij.matchnmusic.repository.StudentRepository;
 import nl.robbertij.matchnmusic.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class StudentService {
     private final StudentRepository studentRepository;
     private final LessonRepository lessonRepository;
     private final UserRepository userRepository;
+
     private final UserService userService;
+    private final FileService fileService;
 
     @Autowired
     public StudentService(StudentRepository studentRepository,
                           LessonRepository lessonRepository,
                           UserRepository userRepository,
-                          UserService userService) {
+                          UserService userService,
+                          FileService fileService) {
         this.studentRepository = studentRepository;
         this.lessonRepository = lessonRepository;
         this.userRepository = userRepository;
         this.userService = userService;
+        this.fileService = fileService;
     }
 
     public List<Student> getStudents(){
@@ -96,12 +98,26 @@ public class StudentService {
         student.setAge(studentRequestDto.getAge());
         student.setPhoneNumber(studentRequestDto.getPhoneNumber());
         student.setResidence(studentRequestDto.getResidence());
+        student.setPhoto(studentRequestDto.getPhoto());
         student.setInstrument(studentRequestDto.getInstrument());
         student.setRequest(studentRequestDto.getRequest());
         student.setPreferenceForLessonType(studentRequestDto.getPreferenceForLessonType());
 
         Student newStudent = studentRepository.save(student);
         return newStudent.getId();
+    }
+
+    public void updateProfileImage(Long id, MultipartFile file) {
+        Optional<Student> optionalStudent = studentRepository.findById(id);
+
+        if (optionalStudent.isPresent()) {
+            Student student = optionalStudent.get();
+            fileService.storeFile(file);
+
+            student.setPhoto(file.getOriginalFilename());
+            studentRepository.save(student);
+        }
+        else throw new RecordNotFoundException("ID does not exist");
     }
 
     public void updateStudent(Long id, Student student){
@@ -123,29 +139,42 @@ public class StudentService {
             Student storedStudent = studentRepository.findById(id).orElse(null);
 
             if (student.getName() != null && !student.getName().isEmpty()){
+                assert storedStudent != null;
                 storedStudent.setName(student.getName());
             }
             if (student.getEmail() != null && !student.getEmail().isEmpty()){
+                assert storedStudent != null;
                 storedStudent.setEmail(student.getEmail());
             }
             if (student.getAge() != null && !student.getAge().isEmpty()){
+                assert storedStudent != null;
                 storedStudent.setAge(student.getAge());
             }
             if (student.getPhoneNumber() != null && !student.getPhoneNumber().isEmpty()) {
+                assert storedStudent != null;
                 storedStudent.setPhoneNumber(student.getPhoneNumber());
             }
             if (student.getResidence() != null && !student.getResidence().isEmpty()){
+                assert storedStudent != null;
                 storedStudent.setResidence(student.getResidence());
             }
+            if (student.getPhoto() != null && !student.getPhoto().isEmpty()){
+                assert storedStudent != null;
+                storedStudent.setPhoto(student.getPhoto());
+            }
             if (student.getInstrument() != null && !student.getInstrument().isEmpty()){
+                assert storedStudent != null;
                 storedStudent.setInstrument(student.getInstrument());
             }
             if (student.getRequest() != null && !student.getRequest().isEmpty()){
+                assert storedStudent != null;
                 storedStudent.setRequest(student.getRequest());
             }
             if (student.getPreferenceForLessonType() != null && !student.getPreferenceForLessonType().isEmpty()){
+                assert storedStudent != null;
                 storedStudent.setPreferenceForLessonType(student.getPreferenceForLessonType());
             }
+            assert storedStudent != null;
             studentRepository.save(storedStudent);
         }
         else throw new RecordNotFoundException("ID does not exist");

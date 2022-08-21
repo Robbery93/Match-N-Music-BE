@@ -12,7 +12,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,7 +20,6 @@ import org.springframework.test.context.ContextConfiguration;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -98,13 +96,13 @@ class TeacherServiceTest {
                 "35",
                 "0698765432",
                 "Den Haag",
-                "piano",
-                "Hallooo",
+                null,
+                "Gitaar",
+                "Halloooo",
                 "Super veel",
                 "Live lessen",
                 null,
                 null
-//                null
         );
 
         teacher2 = new Teacher();
@@ -182,7 +180,7 @@ class TeacherServiceTest {
         when(teacherRepository.findById(id))
                 .thenReturn(Optional.of(teacher));
 
-        Teacher found = teacherService.getTeacher(id);
+        Teacher found = teacherService.getTeacherById(id);
 
         String expected = "Dirk";
         String actual = found.getName();
@@ -214,13 +212,13 @@ class TeacherServiceTest {
                 "31",
                 "0645678913",
                 "Den Haag",
+                null,
                 "piano",
                 "Hallo, ik ben Rosa",
                 "Ik kan heel goed piano spelen",
                 "Live lessen",
                 null,
                 null
-//                null
         );
 
         when(teacherRepository.save(any(Teacher.class))).thenReturn(testTeacher);
@@ -229,7 +227,7 @@ class TeacherServiceTest {
 
         when(teacherRepository.findById(newId)).thenReturn(Optional.ofNullable(testTeacher));
 
-        Teacher found = teacherService.getTeacher(newId);
+        Teacher found = teacherService.getTeacherById(newId);
 
         String expected = "rosa@gmail.com";
         String actual = found.getEmail();
@@ -266,7 +264,7 @@ class TeacherServiceTest {
 
         when(teacherRepository.findById(1L)).thenReturn(Optional.ofNullable(teacher));
 
-        Teacher found = teacherService.getTeacher(1L);
+        Teacher found = teacherService.getTeacherById(1L);
 
         assertEquals("Beau", found.getName());
         assertEquals("beau@gmail.com", found.getEmail());

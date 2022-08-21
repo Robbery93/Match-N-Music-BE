@@ -8,12 +8,14 @@ import nl.robbertij.matchnmusic.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
 
 @RestController
+@CrossOrigin
 @RequestMapping(path = "/teachers")
 public class TeacherController {
     private final TeacherService teacherService;
@@ -41,7 +43,7 @@ public class TeacherController {
 
     @GetMapping(path = "/{id}")
     public ResponseEntity<Object> getTeacher(@PathVariable Long id) {
-        return ResponseEntity.ok(teacherService.getTeacher(id));
+        return ResponseEntity.ok(teacherService.getTeacherById(id));
     }
 
     @GetMapping(path = "/email={email}")
@@ -66,6 +68,13 @@ public class TeacherController {
                 .toUri();
 
         return ResponseEntity.created(location).build();
+    }
+
+    @PostMapping(path="/{id}/upload")
+    public ResponseEntity<Object> updateProfileImage(@PathVariable Long id, @RequestParam MultipartFile file) {
+        teacherService.updateProfileImage(id, file);
+
+        return ResponseEntity.noContent().build();
     }
 
     @PutMapping(path = "/{id}")

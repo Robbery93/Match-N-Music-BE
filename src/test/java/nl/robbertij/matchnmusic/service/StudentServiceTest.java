@@ -77,6 +77,7 @@ class StudentServiceTest {
                 "Ik wil een hoop dingen leren",
                 "Live lessen",
                 null,
+                null,
                 null
         );
         student2 = new Student();
@@ -189,6 +190,7 @@ class StudentServiceTest {
                 "piano",
                 "Ik wil graag piano leren spelen",
                 "Live lessen",
+                null,
                 null,
                 null
         );

@@ -8,10 +8,12 @@ import nl.robbertij.matchnmusic.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
+
 
 @RestController
 @CrossOrigin
@@ -69,6 +71,13 @@ public class StudentController {
         return ResponseEntity.created(location).build();
     }
 
+    @PostMapping(path="/{id}/upload")
+    public ResponseEntity<Object> updateProfileImage(@PathVariable Long id, @RequestParam MultipartFile file) {
+        studentService.updateProfileImage(id, file);
+
+        return ResponseEntity.noContent().build();
+    }
+
     @PutMapping(path = "/{id}")
     public ResponseEntity<Object> updateStudent(@PathVariable Long id, @RequestBody Student student) {
         studentService.updateStudent(id, student);
@@ -96,7 +105,7 @@ public class StudentController {
     }
 
     @DeleteMapping(path = "/{id}/unsubscribe")
-    public ResponseEntity<Object> unsubscribe(@PathVariable("id") Long studentId,
+    public ResponseEntity<Object> unsubscribeLesson(@PathVariable("id") Long studentId,
                                               @RequestParam("teacher_id") Long teacherId) {
         lessonService.deleteLesson(studentId, teacherId);
         return ResponseEntity.noContent().build();

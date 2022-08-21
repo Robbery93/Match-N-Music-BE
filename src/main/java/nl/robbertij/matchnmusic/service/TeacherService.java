@@ -4,7 +4,6 @@ import nl.robbertij.matchnmusic.dto.request.TeacherRequestDto;
 import nl.robbertij.matchnmusic.exception.BadRequestException;
 import nl.robbertij.matchnmusic.exception.RecordNotFoundException;
 import nl.robbertij.matchnmusic.model.Lesson;
-import nl.robbertij.matchnmusic.model.Student;
 import nl.robbertij.matchnmusic.model.Teacher;
 import nl.robbertij.matchnmusic.model.User;
 import nl.robbertij.matchnmusic.repository.LessonRepository;
@@ -12,6 +11,7 @@ import nl.robbertij.matchnmusic.repository.TeacherRepository;
 import nl.robbertij.matchnmusic.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.*;
 
@@ -20,14 +20,21 @@ public class TeacherService {
     private final TeacherRepository teacherRepository;
     private final LessonRepository lessonRepository;
     private final UserRepository userRepository;
+
     private final UserService userService;
+    private final FileService fileService;
 
     @Autowired
-    public TeacherService(TeacherRepository teacherRepository, LessonRepository lessonRepository, UserRepository userRepository, UserService userService) {
+    public TeacherService(TeacherRepository teacherRepository,
+                          LessonRepository lessonRepository,
+                          UserRepository userRepository,
+                          UserService userService,
+                          FileService fileService) {
         this.teacherRepository = teacherRepository;
         this.lessonRepository = lessonRepository;
         this.userRepository = userRepository;
         this.userService = userService;
+        this.fileService = fileService;
     }
 
     public List<Teacher> getTeachers(){
@@ -53,7 +60,7 @@ public class TeacherService {
         }
     }
 
-    public Teacher getTeacher(Long id) {
+    public Teacher getTeacherById(Long id) {
         Optional<Teacher> optionalTeacher = teacherRepository.findById(id);
 
         if (optionalTeacher.isPresent()){
@@ -75,6 +82,7 @@ public class TeacherService {
 
     public void deleteTeacher(Long id) {
         if(teacherRepository.existsById(id)) {
+
             List<Lesson> allLessonsOfTeacher = lessonRepository.findAllByTeacherId(id);
             lessonRepository.deleteAll(allLessonsOfTeacher);
             teacherRepository.deleteById(id);
@@ -97,6 +105,7 @@ public class TeacherService {
         teacher.setAge(teacherRequestDto.getAge());
         teacher.setPhoneNumber(teacherRequestDto.getPhoneNumber());
         teacher.setResidence(teacherRequestDto.getResidence());
+        teacher.setPhoto(teacherRequestDto.getPhoto());
         teacher.setInstrument(teacherRequestDto.getInstrument());
         teacher.setDescription(teacherRequestDto.getDescription());
         teacher.setExperience(teacherRequestDto.getExperience());
@@ -104,6 +113,19 @@ public class TeacherService {
 
         Teacher newTeacher = teacherRepository.save(teacher);
         return newTeacher.getId();
+    }
+
+    public void updateProfileImage(Long id, MultipartFile file) {
+        Optional<Teacher> optionalTeacher = teacherRepository.findById(id);
+
+        if (optionalTeacher.isPresent()) {
+            Teacher teacher = optionalTeacher.get();
+            fileService.storeFile(file);
+
+            teacher.setPhoto(file.getOriginalFilename());
+            teacherRepository.save(teacher);
+        }
+        else throw new RecordNotFoundException("ID does not exist");
     }
 
     public void updateTeacher(Long id, Teacher teacher){
@@ -138,13 +160,17 @@ public class TeacherService {
                 assert storedTeacher != null;
                 storedTeacher.setAge(teacher.getAge());
             }
+            if (teacher.getPhoneNumber() != null && !teacher.getPhoneNumber().isEmpty()) {
+                assert storedTeacher != null;
+                storedTeacher.setPhoneNumber(teacher.getPhoneNumber());
+            }
             if (teacher.getResidence() != null && !teacher.getResidence().isEmpty()) {
                 assert storedTeacher != null;
                 storedTeacher.setResidence(teacher.getResidence());
             }
-            if (teacher.getPhoneNumber() != null && !teacher.getPhoneNumber().isEmpty()) {
+            if (teacher.getPhoto() != null && !teacher.getPhoto().isEmpty()){
                 assert storedTeacher != null;
-                storedTeacher.setPhoneNumber(teacher.getPhoneNumber());
+                storedTeacher.setPhoto(teacher.getPhoto());
             }
             if (teacher.getInstrument() != null && !teacher.getInstrument().isEmpty()) {
                 assert storedTeacher != null;
@@ -203,7 +229,7 @@ public class TeacherService {
             currentUser.setTeacher(teacher);
             userRepository.save(currentUser);
         } else {
-            throw new RecordNotFoundException("student niet gevonden");
+            throw new RecordNotFoundException("Student niet gevonden");
         }
     }
 }

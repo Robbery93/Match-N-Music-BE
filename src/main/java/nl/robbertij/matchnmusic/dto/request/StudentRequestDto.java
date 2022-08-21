@@ -7,28 +7,22 @@ public class StudentRequestDto {
     // attributes
     @NotBlank
     private String name;
-
     @NotBlank
     @Email
     private String email;
-
     @NotBlank
     private String age;
-
     @NotBlank
     @Digits(integer = 12, fraction = 0)
     // accepts 06******** & +316 ********)
     private String phoneNumber;
-
     @NotBlank
     private String residence;
-
+    private String photo;
     @NotBlank
     private String instrument;
-
     @NotBlank
     private String request;
-
     @NotBlank
     private String preferenceForLessonType;
 
@@ -74,6 +68,14 @@ public class StudentRequestDto {
 
     public void setResidence(String residence) {
         this.residence = residence;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 
     public String getInstrument() {

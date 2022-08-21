@@ -81,9 +81,7 @@ public class LessonService {
 
     public void updateHomework(long studentId, long teacherId, Lesson lesson) {
         StudentTeacherKey id = new StudentTeacherKey(studentId, teacherId);
-        if(lessonRepository.findById(id).isEmpty()) {
-            throw new RecordNotFoundException("ID does not exist");
-        }
+        if(lessonRepository.findById(id).isEmpty()) throw new RecordNotFoundException("ID does not exist");
 
         Lesson existingLesson = lessonRepository.findById(id).orElse(null);
         if(lesson.getHomework() != null) {

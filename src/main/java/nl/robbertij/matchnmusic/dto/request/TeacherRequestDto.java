@@ -10,32 +10,25 @@ public class TeacherRequestDto {
     //attributes
     @NotBlank
     private String name;
-
     @NotBlank
     @Email
     private String email;
-
     @NotBlank
     private String age;
-
     @NotBlank
     @Digits(integer = 10, fraction = 0)
     private String phoneNumber;
-
     @NotBlank
     private String residence;
-
+    private String photo;
     @NotBlank
     private String instrument;
-
     @NotBlank
     @Size(min = 20, max = 200)
     private String description;
-
     @NotBlank
     @Size(min = 20, max = 200)
     private String experience;
-
     @NotBlank
     private String preferenceForLessonType;
 
@@ -84,6 +77,14 @@ public class TeacherRequestDto {
 
     public void setResidence(String residence) {
         this.residence = residence;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 
     public String getInstrument() {

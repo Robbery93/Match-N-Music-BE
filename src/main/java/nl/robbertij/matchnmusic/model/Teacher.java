@@ -11,29 +11,22 @@ public class Teacher {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
     private String email;
     private String age;
-
     @Column(name = "phone_number")
     private String phoneNumber;
-
     private String residence;
+    private String photo;
     private String instrument;
-
     @Column(length = 2000)
     private String description;
-
     @Column(length = 4000)
     private String experience;
-
     @Column(name = "preference_for_lesson_type")
     private String preferenceForLessonType;
-
     @OneToMany(mappedBy = "teacher", fetch = FetchType.LAZY)
     private List<Lesson> lessons;
-
     @OneToMany(mappedBy = "teacher", fetch = FetchType.LAZY)
     private List<Lesson> applications;
 
@@ -45,6 +38,7 @@ public class Teacher {
                    String age,
                    String phoneNumber,
                    String residence,
+                   String photo,
                    String instrument,
                    String description,
                    String experience,
@@ -58,6 +52,7 @@ public class Teacher {
         this.age = age;
         this.phoneNumber = phoneNumber;
         this.residence = residence;
+        this.photo = photo;
         this.instrument = instrument;
         this.description = description;
         this.experience = experience;
@@ -113,6 +108,10 @@ public class Teacher {
     public void setResidence(String residence) {
         this.residence = residence;
     }
+
+    public String getPhoto() {return photo;}
+
+    public void setPhoto(String photo) {this.photo = photo;}
 
     public String getInstrument() {
         return instrument;
@@ -183,6 +182,7 @@ public class Teacher {
                 ", age='" + age + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", residence='" + residence + '\'' +
+                ", photo='" + photo + '\'' +
                 ", instrument='" + instrument + '\'' +
                 ", description='" + description + '\'' +
                 ", experience='" + experience + '\'' +

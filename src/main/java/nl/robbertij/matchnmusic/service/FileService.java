@@ -20,6 +20,7 @@ public class FileService {
 
     @Value("${my.upload_location}")
     private Path fileStoragePath;
+
     private String fileStorageLocation;
 
     public FileService(@Value("${my.upload_location}") String fileStorageLocation) {
