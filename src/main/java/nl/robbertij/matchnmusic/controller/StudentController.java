@@ -36,15 +36,15 @@ public class StudentController {
         return ResponseEntity.ok(studentService.getStudents());
     }
 
+    @GetMapping(path = "/{id}")
+    public ResponseEntity<Object> getStudent(@PathVariable Long id) {
+        return ResponseEntity.ok(studentService.getStudentById(id));
+    }
+
     @GetMapping(path = "/")
     public ResponseEntity<Object> getStudentsByInstrumentAndPreference(@RequestParam(name = "instrument") String instrument,
                                                                        @RequestParam(name = "preference") String preference){
         return ResponseEntity.ok(studentService.getStudentsByInstrumentAndPreference(instrument, preference));
-    }
-
-    @GetMapping(path = "/{id}")
-    public ResponseEntity<Object> getStudent(@PathVariable Long id) {
-        return ResponseEntity.ok(studentService.getStudentById(id));
     }
 
     @GetMapping(path = "/email={email}")

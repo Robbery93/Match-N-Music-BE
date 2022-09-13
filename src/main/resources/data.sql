@@ -108,10 +108,10 @@ VALUES ('Robbert', 'robbery@gmail.com', '28', 'Rotterdam', '0655751563', 'Gitaar
 INSERT INTO lessons (teacher_id, student_id, active, homework)
 VALUES (1, 1, TRUE, 'Voor vandaag heb je nog geen huiswerk. Goed gedaan vanmiddag!'),
        (1, 4, TRUE, 'Lekker bezig vandaag!'),
-       (1, 2, FALSE, null),
-       (1, 5, FALSE, null);
+       (1, 2, FALSE, ''),
+       (1, 5, FALSE, '');
 
-/* password is de username beginnend met een hoofdletter, met 123! eraan vast e.g.: username: robbert, password: Robbert123! */
+-- password is de username beginnend met een hoofdletter, met 123! eraan vast e.g.: username: robbert, password: Robbert123!
 INSERT INTO users (username, password, enabled, student_id, teacher_id)
 VALUES ('robbert', '$2a$10$3Ir/NL1.eapVLyq3NCCLfOyIsq.9y7ZziVJWs9hD4ChDlLNTV08mu', TRUE, 1, null),
        ('dirk', '$2a$10$EfOSvkOuW7bvg2fMHeosHO.1RU6vkuC4jBkDfgfH26zK6KxmdNuZq', TRUE, null, 1),

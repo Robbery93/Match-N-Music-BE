@@ -101,22 +101,6 @@ public class UserService {
         }
     }
 
-    public void updateUser(String username, User newUser) {
-        Optional<User> userOptional = userRepository.findById(username);
-        if (userOptional.isEmpty()) {
-            throw new UserNotFoundException(username);
-        }
-        else {
-            if (isValidPassword(newUser.getPassword())) {
-                User user = userOptional.get();
-                user.setPassword(passwordEncoder.encode(newUser.getPassword()));
-                user.setEnabled(newUser.isEnabled());
-                userRepository.save(user);
-            } else throw new InvalidPasswordException("Wachtwoord moet minimaal 8 karakters hebben, en moet in ieder geval 1 kleine letter, 1 hoofdletter, 1 cijfer en 1 speciaal teken bevatten");
-
-    }
-    }
-
     public Set<Authority> getAuthorities(String username) {
         Optional<User> userOptional = userRepository.findById(username);
         if (userOptional.isEmpty()) {
@@ -181,7 +165,8 @@ public class UserService {
                 Optional<User> userOptional = userRepository.findById(username);
                 if (userOptional.isPresent()) {
                     User user = userOptional.get();
-                    user.setPassword(passwordEncoder.encode(password));
+                    String encryptedPassword = passwordEncoder.encode(password);
+                    user.setPassword(encryptedPassword);
                     userRepository.save(user);
                 }
                 else {
@@ -189,7 +174,7 @@ public class UserService {
                 }
             }
             else {
-                throw new InvalidPasswordException();
+                throw new InvalidPasswordException("Password has to at least have 8 characters, including 1 uppercase letter, 1 number and 1 special symbol");
             }
         }
         else {

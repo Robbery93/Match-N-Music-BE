@@ -1,0 +1,1439 @@
+{
+	"info": {
+		"_postman_id": "62bb43ca-615e-45ed-b2c7-cbf964f51637",
+		"name": "Match 'n Music",
+		"description": "Alle endpoints voor de Match 'n Music app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18299467"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Authenticate user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"robbert\",\r\n    \"password\": \"Robbert123!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/authenticate",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"authenticate"
+							]
+						},
+						"description": "Creërt een een JWT token"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Authorities",
+					"item": [
+						{
+							"name": "get User Authorities",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/users/robbert/authorities",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"users",
+										"robbert",
+										"authorities"
+									]
+								},
+								"description": "Geeft alle Authorities van een User"
+							},
+							"response": []
+						},
+						{
+							"name": "add User Authority",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY2MzE1MzQzMCwiaWF0IjoxNjYzMDY3MDMwfQ.xduYTpBOLr9zE8LzYZiCpCxf2mwWbsolmOdjpxQstrQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"robbert\",\r\n    \"authority\": \"admin\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/users/robbert/authorities",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"users",
+										"robbert",
+										"authorities"
+									]
+								},
+								"description": "Voegt een Authority toe aan een User"
+							},
+							"response": []
+						},
+						{
+							"name": "remove Authority",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY2MzE1MzQzMCwiaWF0IjoxNjYzMDY3MDMwfQ.xduYTpBOLr9zE8LzYZiCpCxf2mwWbsolmOdjpxQstrQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/users/robbert/authorities/ROLE_ADMIN",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"users",
+										"robbert",
+										"authorities",
+										"ROLE_ADMIN"
+									]
+								},
+								"description": "Verwijderd een Authority van een User"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "get Users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY2MzE1Mjk2MSwiaWF0IjoxNjYzMDY2NTYxfQ.UVhFnzpTYBaTBeKJ1CysX9LlpYsKvOyImOySxziPA6U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users"
+							]
+						},
+						"description": "Geeft alle Users"
+					},
+					"response": []
+				},
+				{
+					"name": "get User by username",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyb2JiZXJ0IiwiZXhwIjoxNjYzMTU0NDQyLCJpYXQiOjE2NjMwNjgwNDJ9.y3SwyjemX7KpsQutrAeNg4HHqq4mGjQ_SMaCe9sHjzE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/users/robbert",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"robbert"
+							]
+						},
+						"description": "Geeft een User op basis van username, aangegeven in de url"
+					},
+					"response": []
+				},
+				{
+					"name": "add Student",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"Joris\",\r\n    \"password\": \"Joris123!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/users/student",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"student"
+							]
+						},
+						"description": "Creërt een nieuwe User met Authority \"ROLE_STUDENT\""
+					},
+					"response": []
+				},
+				{
+					"name": "add Teacher",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"johnny\",\r\n    \"password\": \"Johnny123!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/users/teacher",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"teacher"
+							]
+						},
+						"description": "Creërt een nieuwe User met Authority \"ROLE_TEACHER\""
+					},
+					"response": []
+				},
+				{
+					"name": "delete User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY2MzE1NjE4MSwiaWF0IjoxNjYzMDY5NzgxfQ.cm9o_eVQbTh9E8FwjujF4LUvmVJO7Soc3HawTXjaQ3w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/users/robbert",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"robbert"
+							]
+						},
+						"description": "Verwijderd een User op basis van username, aangegeven in de url"
+					},
+					"response": []
+				},
+				{
+					"name": "change Password for User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyb2JiZXJ0IiwiZXhwIjoxNjYzMTUzMTc1LCJpYXQiOjE2NjMwNjY3NzV9.I6IN2CmyK69PYGbR_qZCihgLt8xb2ixYcnswnWITaaY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"EennieuwWachtwoord123!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/users/robbert/password",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"robbert",
+								"password"
+							]
+						},
+						"description": "Wijzig het wachtwoord van een User, aangegeven in de url"
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints voor Users"
+		},
+		{
+			"name": "Students",
+			"item": [
+				{
+					"name": "Lesson",
+					"item": [
+						{
+							"name": "get Lesson of Student",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyb2JiZXJ0IiwiZXhwIjoxNjYzMTU0NDQyLCJpYXQiOjE2NjMwNjgwNDJ9.y3SwyjemX7KpsQutrAeNg4HHqq4mGjQ_SMaCe9sHjzE",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/students/1/lesson",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"students",
+										"1",
+										"lesson"
+									]
+								},
+								"description": "Geeft de Lesson van de Student terug"
+							},
+							"response": []
+						},
+						{
+							"name": "get Applications of Student",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY2MzE1NjE4MSwiaWF0IjoxNjYzMDY5NzgxfQ.cm9o_eVQbTh9E8FwjujF4LUvmVJO7Soc3HawTXjaQ3w",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/students/2/applications",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"students",
+										"2",
+										"applications"
+									]
+								},
+								"description": "Geeft de openstaande Applications van de Student terug"
+							},
+							"response": []
+						},
+						{
+							"name": "delete Lesson",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY2MzE1NjE4MSwiaWF0IjoxNjYzMDY5NzgxfQ.cm9o_eVQbTh9E8FwjujF4LUvmVJO7Soc3HawTXjaQ3w",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/students/1/unsubscribe?teacher_id=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"students",
+										"1",
+										"unsubscribe"
+									],
+									"query": [
+										{
+											"key": "teacher_id",
+											"value": "1"
+										}
+									]
+								},
+								"description": "Verwijderd de bestaande Lesson van de Student, op basis van student_id/teacher_id combinatie"
+							},
+							"response": []
+						},
+						{
+							"name": "apply for Lesson",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY2MzE1NjE4MSwiaWF0IjoxNjYzMDY5NzgxfQ.cm9o_eVQbTh9E8FwjujF4LUvmVJO7Soc3HawTXjaQ3w",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/students/1/apply?teacher_id=5",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"students",
+										"1",
+										"apply"
+									],
+									"query": [
+										{
+											"key": "teacher_id",
+											"value": "5"
+										}
+									]
+								},
+								"description": "Een Student doet een aanvraag voor een les bij een Teacher door middel van een student_id/teacher_id combinatie"
+							},
+							"response": []
+						}
+					],
+					"description": "Endpoints voor Lessons van Students"
+				},
+				{
+					"name": "get all Students",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyb2JiZXJ0IiwiZXhwIjoxNjYzMTU0NDQyLCJpYXQiOjE2NjMwNjgwNDJ9.y3SwyjemX7KpsQutrAeNg4HHqq4mGjQ_SMaCe9sHjzE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/students/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"students",
+								"all"
+							],
+							"query": [
+								{
+									"key": "residence",
+									"value": "Rotterdam",
+									"disabled": true
+								},
+								{
+									"key": "name",
+									"value": "anna",
+									"disabled": true
+								},
+								{
+									"key": "instrument",
+									"value": "Gitaar",
+									"disabled": true
+								},
+								{
+									"key": "pref",
+									"value": "Live lessen",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Geeft alle Students"
+					},
+					"response": []
+				},
+				{
+					"name": "get Student by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY2MzE1NjE4MSwiaWF0IjoxNjYzMDY5NzgxfQ.cm9o_eVQbTh9E8FwjujF4LUvmVJO7Soc3HawTXjaQ3w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/students/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"students",
+								"1"
+							]
+						},
+						"description": "Geeft een Student op basis van id terug, aangegeven in de url"
+					},
+					"response": []
+				},
+				{
+					"name": "get Students by intrument and preference",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY2MzE1NjE4MSwiaWF0IjoxNjYzMDY5NzgxfQ.cm9o_eVQbTh9E8FwjujF4LUvmVJO7Soc3HawTXjaQ3w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/students/?instrument=Gitaar&preference=Live lessen",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"students",
+								""
+							],
+							"query": [
+								{
+									"key": "instrument",
+									"value": "Gitaar"
+								},
+								{
+									"key": "preference",
+									"value": "Live lessen"
+								}
+							]
+						},
+						"description": "Geeft alle studenten op basis van instrument en voorkeur voor les terug, aangegeven als parameters in de url"
+					},
+					"response": []
+				},
+				{
+					"name": "get Student by Email",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkaXJrIiwiZXhwIjoxNjYzMTU0MTA4LCJpYXQiOjE2NjMwNjc3MDh9.ZkRw9Hzqb-FOCYpe1fc7_QMlYL85vFBLOLKz5O9mzLM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/students/email=robbery@gmail.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"students",
+								"email=robbery@gmail.com"
+							]
+						},
+						"description": "Geeft een Student terug op basis van email,. aangegeven in de url"
+					},
+					"response": []
+				},
+				{
+					"name": "delete Student by id",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/students/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"students",
+								"1"
+							]
+						},
+						"description": "Verwijderd een Student op basis van id, aangegeven in de url.\n\n**LET OP: werkt alleen als er geen User aan gekoppeld is. Verwijder deze eerst, indien nodig.**"
+					},
+					"response": []
+				},
+				{
+					"name": "add Student",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY2MzE1NjE4MSwiaWF0IjoxNjYzMDY5NzgxfQ.cm9o_eVQbTh9E8FwjujF4LUvmVJO7Soc3HawTXjaQ3w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Joris\",\r\n    \"email\": \"joris@gmail.com\",\r\n    \"age\": \"45\",\r\n    \"residence\" : \"Lutjebroek\",\r\n    \"phoneNumber\" : \"+3187834321\",\r\n    \"instrument\" : \"Gitaar\",\r\n    \"request\" : \"Is er iemand die mij dit kan leren?\",\r\n    \"preferenceForLessonType\": \"Online les\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/students",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"students"
+							]
+						},
+						"description": "Creërt een nieuwe Student"
+					},
+					"response": []
+				},
+				{
+					"name": "update profile image",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY2MjgyMTgwNSwiaWF0IjoxNjYyNzM1NDA1fQ.CvbYrQ5vAmnkA_lKz-mtODnaraJQagxSlWuUvaJ9IFw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/robbe/Pictures/Afbeeldingen MusicNMatch/Docent.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/students/1/upload",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"students",
+								"1",
+								"upload"
+							]
+						},
+						"description": "Uploadt een .jpg of .png bestand naar de Database, en koppelt de naam van het bestand aan de Student"
+					},
+					"response": []
+				},
+				{
+					"name": "partial update Student",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyb2JiZXJ0IiwiZXhwIjoxNjYzMTU0NDQyLCJpYXQiOjE2NjMwNjgwNDJ9.y3SwyjemX7KpsQutrAeNg4HHqq4mGjQ_SMaCe9sHjzE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"request\": \"Ik wil suuuuper goed kunnen zingenIk wil suuuuper goed kunnen zingenIk wil suuuuper goed kunnen zingenIk wil suuuuper goed kunnen zingenIk wil suuuuper goed kunnen zingenIk wil suuuuper goed kunnen zingenIk wil suuuuper goed kunnen zingenIk wil suuuuper goed kunnen zingenIk wil suuuuper goed kunnen zingenIk wil suuuuper goed kunnen zingenIk wil suuuuper goed kunnen zingen\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/students/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"students",
+								"1"
+							]
+						},
+						"description": "Gedeeltelijke update voor informatie van de Student, zoals bijvoorbeeld het verzoek."
+					},
+					"response": []
+				},
+				{
+					"name": "link to User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY2MzE1NjE4MSwiaWF0IjoxNjYzMDY5NzgxfQ.cm9o_eVQbTh9E8FwjujF4LUvmVJO7Soc3HawTXjaQ3w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/students/linkuser/Joris?email=joris@gmail.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"students",
+								"linkuser",
+								"Joris"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "joris@gmail.com"
+								}
+							]
+						},
+						"description": "Koppelt de zojuist aangemaakte Student aan de ingelogte User"
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints voor Students"
+		},
+		{
+			"name": "Teachers",
+			"item": [
+				{
+					"name": "Lessons",
+					"item": [
+						{
+							"name": "get Lesson of Teacher by Student ID",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkaXJrIiwiZXhwIjoxNjYzMTU1MDQzLCJpYXQiOjE2NjMwNjg2NDN9.c3pfUKTTOyzwqynqdNBwghPs6ogFczHuf1g2ISgqJ-c",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/teachers/1/lesson?student_id=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"teachers",
+										"1",
+										"lesson"
+									],
+									"query": [
+										{
+											"key": "student_id",
+											"value": "1"
+										}
+									]
+								},
+								"description": "Geeft de les van een Teacher met aangegeven Student"
+							},
+							"response": []
+						},
+						{
+							"name": "get active Lessons of Teacher",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY2MzE1NjE4MSwiaWF0IjoxNjYzMDY5NzgxfQ.cm9o_eVQbTh9E8FwjujF4LUvmVJO7Soc3HawTXjaQ3w",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/teachers/1/lessons",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"teachers",
+										"1",
+										"lessons"
+									]
+								},
+								"description": "Geeft alle actieve Lessons van de Teacher"
+							},
+							"response": []
+						},
+						{
+							"name": "get applications of Teacher",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkaXJrIiwiZXhwIjoxNjYzMTU1MDQzLCJpYXQiOjE2NjMwNjg2NDN9.c3pfUKTTOyzwqynqdNBwghPs6ogFczHuf1g2ISgqJ-c",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/teachers/1/applications",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"teachers",
+										"1",
+										"applications"
+									]
+								},
+								"description": "Geeft alle openstaande Applications van Students van aangegeven Teacher"
+							},
+							"response": []
+						},
+						{
+							"name": "delete Lesson",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY2MzE1NjE4MSwiaWF0IjoxNjYzMDY5NzgxfQ.cm9o_eVQbTh9E8FwjujF4LUvmVJO7Soc3HawTXjaQ3w",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/teachers/1/unsubscribe?student_id=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"teachers",
+										"1",
+										"unsubscribe"
+									],
+									"query": [
+										{
+											"key": "student_id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update Homework",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY2MzE1NjE4MSwiaWF0IjoxNjYzMDY5NzgxfQ.cm9o_eVQbTh9E8FwjujF4LUvmVJO7Soc3HawTXjaQ3w",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"homework\": \"Vandaag moet je super veel gaan doen enzo\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/teachers/1/update_homework?student_id=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"teachers",
+										"1",
+										"update_homework"
+									],
+									"query": [
+										{
+											"key": "student_id",
+											"value": "1"
+										}
+									]
+								},
+								"description": "Past het huiswerk van de Lesson aan, aangegeven door een teacher_id/student_id combinatie"
+							},
+							"response": []
+						}
+					],
+					"description": "Endpoints voor Lessons van Teachers"
+				},
+				{
+					"name": "get all Teachers",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkaXJrIiwiZXhwIjoxNjYzMTUzNjMxLCJpYXQiOjE2NjMwNjcyMzF9.FZRd50ex3GQDV0aJMvb6Tgiqn_Ze1Klcf1pUfy619eI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/teachers/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"teachers",
+								"all"
+							],
+							"query": [
+								{
+									"key": "instrument",
+									"value": "gitaar",
+									"disabled": true
+								},
+								{
+									"key": "pref",
+									"value": "Videolessen",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Geeft alle Teachers terug"
+					},
+					"response": []
+				},
+				{
+					"name": "get Teacher by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY2MzE1NjE4MSwiaWF0IjoxNjYzMDY5NzgxfQ.cm9o_eVQbTh9E8FwjujF4LUvmVJO7Soc3HawTXjaQ3w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/teachers/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"teachers",
+								"1"
+							]
+						},
+						"description": "Geeft Teachers op basis van id terug, aangegeven in de url"
+					},
+					"response": []
+				},
+				{
+					"name": "get Teachers by instrument and preference",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkaXJrIiwiZXhwIjoxNjYzMTUzNjMxLCJpYXQiOjE2NjMwNjcyMzF9.FZRd50ex3GQDV0aJMvb6Tgiqn_Ze1Klcf1pUfy619eI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/teachers?instrument=Gitaar&preference=Geen voorkeur",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"teachers"
+							],
+							"query": [
+								{
+									"key": "instrument",
+									"value": "Gitaar"
+								},
+								{
+									"key": "preference",
+									"value": "Geen voorkeur"
+								}
+							]
+						},
+						"description": "Geeft alle Teachers terug op basis van instrument en voorkeur van lesvorm, aangegeven in de url als parameters"
+					},
+					"response": []
+				},
+				{
+					"name": "get Teacher by Email",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY2MzE1MzQzMCwiaWF0IjoxNjYzMDY3MDMwfQ.xduYTpBOLr9zE8LzYZiCpCxf2mwWbsolmOdjpxQstrQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/teachers/email=dirk@gmail.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"teachers",
+								"email=dirk@gmail.com"
+							]
+						},
+						"description": "Geeft een Teacher terug op basis van email, aangegeven in de url"
+					},
+					"response": []
+				},
+				{
+					"name": "delete Teacher by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkaXJrIiwiZXhwIjoxNjYzMTUzNjMxLCJpYXQiOjE2NjMwNjcyMzF9.FZRd50ex3GQDV0aJMvb6Tgiqn_Ze1Klcf1pUfy619eI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/teachers/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"teachers",
+								"2"
+							]
+						},
+						"description": "StartFragment\n\nVerwijderd een Teacher op basis van id, aangegeven in de url.\n\n**LET OP: werkt alleen als er geen User aan gekoppeld is. Verwijder deze eerst, indien nodig.**"
+					},
+					"response": []
+				},
+				{
+					"name": "add Teacher",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkaXJrIiwiZXhwIjoxNjYzMTU0MTA4LCJpYXQiOjE2NjMwNjc3MDh9.ZkRw9Hzqb-FOCYpe1fc7_QMlYL85vFBLOLKz5O9mzLM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Johnny\",\r\n    \"email\": \"johnny@gmail.com\",\r\n    \"age\": \"46\",\r\n    \"residence\" : \"Den Haag\",\r\n    \"phoneNumber\": \"0612345678\",\r\n    \"instrument\" : \"Zang\",\r\n    \"description\" : \"ffffffffffffffffffffffffffffffffffff\",\r\n    \"experience\" : \"ffffffffffffffffffffffffffffffffffff\",\r\n    \"preferenceForLessonType\": \"Geen voorkeur\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/teachers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"teachers"
+							]
+						},
+						"description": "Creërt een nieuwe Teacher"
+					},
+					"response": []
+				},
+				{
+					"name": "update profile image",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkaXJrIiwiZXhwIjoxNjYzMTU0MTA4LCJpYXQiOjE2NjMwNjc3MDh9.ZkRw9Hzqb-FOCYpe1fc7_QMlYL85vFBLOLKz5O9mzLM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/robbe/Pictures/Afbeeldingen MusicNMatch/Docent3.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/teachers/1/upload",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"teachers",
+								"1",
+								"upload"
+							]
+						},
+						"description": "StartFragment\n\nUploadt een .jpg of .png bestand naar de Database, en koppelt de naam van het bestand aan de Teacher\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "partial update Teacher",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyb2JiZXJ0IiwiZXhwIjoxNjYzMTU0NDQyLCJpYXQiOjE2NjMwNjgwNDJ9.y3SwyjemX7KpsQutrAeNg4HHqq4mGjQ_SMaCe9sHjzE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"experience\": \"Ik ben echt heel erg goed geworden sinds de laatste keer dat ik hier iets over schreef\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/teachers/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"teachers",
+								"1"
+							]
+						},
+						"description": "StartFragment\n\nGedeeltelijke update voor informatie van de Teacher, zoals bijvoorbeeld het verzoek.\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "Link to User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkaXJrIiwiZXhwIjoxNjYzMTU1MDQzLCJpYXQiOjE2NjMwNjg2NDN9.c3pfUKTTOyzwqynqdNBwghPs6ogFczHuf1g2ISgqJ-c",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/teachers/linkuser/johnny?email=johnny@gmail.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"teachers",
+								"linkuser",
+								"johnny"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "johnny@gmail.com"
+								}
+							]
+						},
+						"description": "StartFragment\n\nKoppelt de zojuist aangemaakte Teacher aan de ingelogte User"
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints voor Teachers"
+		},
+		{
+			"name": "File",
+			"item": [
+				{
+					"name": "Upload File",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/robbe/Pictures/Afbeeldingen MusicNMatch/Docent.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/files/upload",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"files",
+								"upload"
+							]
+						},
+						"description": "Upload een File naar de Database"
+					},
+					"response": []
+				},
+				{
+					"name": "Get File",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/files/download/DocentM1.jpg",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"files",
+								"download",
+								"DocentM1.jpg"
+							]
+						},
+						"description": "Geeft de File terug, zoals aangegeven in de url."
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

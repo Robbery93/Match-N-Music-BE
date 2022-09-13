@@ -38,6 +38,11 @@ public class FileService {
     public String storeFile(MultipartFile file) {
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 
+        // Voor Windows gebruikers is het noodzakelijk dat op regel 46 van deze code twee backslashes staan.
+
+        // MacOS gebruikers kunnen de regel hieronder gebruiken.
+        // Path filePath = Paths.get(fileStoragePath + "/" + fileName);
+
         Path filePath = Paths.get(fileStoragePath + "\\" + fileName);
 
         try {
