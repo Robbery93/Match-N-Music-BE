@@ -1,6 +1,5 @@
 package nl.robbertij.matchnmusic.service;
 
-import nl.robbertij.matchnmusic.exception.FileStorageException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;

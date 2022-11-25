@@ -176,7 +176,7 @@ public class TeacherService {
                 assert storedTeacher != null;
                 storedTeacher.setInstrument(teacher.getInstrument());
             }
-            if (teacher.getDescription() != null && teacher.getDescription().isEmpty()) {
+            if (teacher.getDescription() != null && !teacher.getDescription().isEmpty()) {
                 assert storedTeacher != null;
                 storedTeacher.setDescription(teacher.getDescription());
             }

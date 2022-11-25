@@ -49,7 +49,7 @@ public class StudentRepositoryTest {
     void whenFindAllByInstrument_thenReturnStudentsMatchingInstrument() {
         List<Student> found = studentRepository.findAllByInstrument("Zang");
 
-        int expectedSize = 1;
+        int expectedSize = 3;
         int actualSize = found.size();
 
         assertEquals(expectedSize, actualSize);

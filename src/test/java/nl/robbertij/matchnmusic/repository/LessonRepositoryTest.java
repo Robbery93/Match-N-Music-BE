@@ -31,6 +31,6 @@ class LessonRepositoryTest {
     void findAllByStudentId() {
         List<Lesson> found = lessonRepository.findAllByStudentId(1);
 
-        assertEquals(4, found.size());
+        assertEquals(1, found.size());
     }
 }
